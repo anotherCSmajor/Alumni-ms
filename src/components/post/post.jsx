@@ -1,88 +1,144 @@
 import Card from '../../components/card/card'
-import React from 'react'
-import { useState } from "react";
+import React, { memo, useState, useCallback } from "react";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/Share';
-const Post = () => {
-    const [seeMore, setSeeMore] = useState(false);
-    const [comment, setComment] = useState(false);
-    const handleSendComment = (e) => {
-        e.preventDefault()
-    }
-    const desc = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rem consectetur labore maxime, quod illum? Hic quas minus vel sapiente veniam explicabo vero consectetur illo minima officiis sed, eaque aliquam.`
-    return (
-        <div>
-            <Card padding={0}>
-                <div className='flex gap-3 p-4'>
-                    <div className='w-12 h-12 rounded-4xl'>
-                        <img src="/collegefrontpage.jpg" alt="" className='rounded-4xl w-12 h-12 border-2 border-white cursor-pointer ' />
-                    </div>
-                    <div>
-                        <div className='text-lg font-semibold '>SCE saharsa</div>
-                        <div className='text-xs text-gray-500 '>Administration</div>
-                    </div>
-                </div>
-                <div className='text-md p-4 my-3 whitespace-pre-line flex-grow '>
-                    {seeMore ? desc : `${desc.slice(0, 50)}...`} <span onClick={() => setSeeMore(prev => !prev)} className='cursor-pointer text-gray-500 '>
-                        {seeMore ? "see less" : 'see more'}
-                    </span>
-                </div>
-                <div className='w-[100%] h-[300px]'>
-                    <img className='w-full h-full' src="https://images.pexels.com/photos/26757586/pexels-photo-26757586.jpeg" alt="" />
-                </div>
-                <div className='my-2 p-4 flex justify-between items-center '>
-                    <div className='flex gap-1 items-center '>
-                        <ThumbUpIcon sx={{ color: "blue", fontSize: 12 }} /><div>Likes</div>
-                    </div>
-                    <div className='flex gap-1 items-center '>
-                        <div>2 Comments</div>
-                    </div>
 
-                </div>
-                <div className='flex p-1'>
-                    <div className='w-[33%] justify-center flex gap-2 items-center border-r-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-200'>
-                        <ThumbUpIcon sx={{ fontSize: '22', color: 'blue' }} /><span>Likes</span>
-                    </div>
-                    <div onClick={()=>setComment(true)} className='w-[33%] justify-center flex gap-2 items-center border-r-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-200'>
-                        <CommentIcon sx={{ fontSize: '22', }} /><span>comment</span>
-                    </div>
-                    <div className='w-[33%] justify-center flex gap-2 items-center border-r-1 border-gray-100 p-2 cursor-pointer hover:bg-gray-200'>
-                        <ShareIcon sx={{ fontSize: '22', }} /><span>Share</span>
-                    </div>
-                </div>
-                 {/*  comment section */}
-                 {
-                    comment && <div>
-                      <div className='p-4 w-full'>
-                        <div className='flex gap-2 items-center'><img src="/collegefrontpage.jpg" alt="" className='rounded-full w-12 h-12 border-2 border-white cursor-pointer' />
-                            <form action="" onSubmit={handleSendComment} className='w-full flex gap-2'>
-                                <input type="text" placeholder='Add a comment...' className='w-full border-1 py-3 rounded-3xl hover:bg-gray-200' />
-                                <button type='submit' className='cursor:pointer bg-blue-800 text-white rounded-3xl py-1 px-3'>send</button>
-                            </form>
-                        </div>
-                     </div>
+const Post = memo(() => {
+  const [seeMore, setSeeMore] = useState(false);
+  const [comment, setComment] = useState(false);
 
-                     <div className='w-full p-4'>
-                        <div className='my-4 '>
-                            <div className='flex gap-3'>
-                                <img src="/collegefrontpage.jpg" alt="" className='rounded-full w-10 h-10 border-2 border-white cursor-pointer' />
-                                <div className='cursor-pointer'>
-                                    <div className='text-md'>dummy user</div>
-                                    <div className='text-sm text-gray-500'>@amaxon Sde2</div>
-                                </div>
-                            </div>
-                            <div className='px-11 my-2 '>hi it's beatifulll</div>
-                        </div>
+  const handleSendComment = useCallback((e) => {
+    e.preventDefault()
+  }, [])
 
-                    </div>
+  const toggleSeeMore = useCallback(() => {
+    setSeeMore(prev => !prev)
+  }, [])
 
+  const toggleComment = useCallback(() => {
+    setComment(prev => !prev)
+  }, [])
 
-                </div>
-                 }
-            </Card>
+  const desc = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rem consectetur labore maxime, quod illum? Hic quas minus vel sapiente veniam explicabo vero consectetur illo minima officiis sed, eaque aliquam.`
+  
+  return (
+    <div>
+      <Card padding={0} className="rounded-3xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
+        
+        {/* Header */}
+        <div className='flex gap-3 p-4 items-center'>
+          <img 
+            src="/collegefrontpage.jpg" 
+            alt="profile" 
+            className='rounded-full w-12 h-12 border border-white shadow-sm cursor-pointer' 
+          />
+          <div>
+            <div className='text-lg font-semibold text-gray-900'>SCE Saharsa</div>
+            <div className='text-xs text-gray-500'>Administration</div>
+          </div>
         </div>
-    )
-}
 
+        {/* Description */}
+        <div className='text-sm text-gray-700 px-4 pb-3 whitespace-pre-line leading-relaxed'>
+          {seeMore ? desc : `${desc.slice(0, 80)}...`} 
+          <span 
+            onClick={toggleSeeMore} 
+            className='cursor-pointer text-blue-600 hover:underline ml-1'
+          >
+            {seeMore ? "see less" : 'see more'}
+          </span>
+        </div>
+
+        {/* Image */}
+        <div className='w-full h-[280px] overflow-hidden rounded-2xl px-4 shadow-md'>
+          <img 
+            className='w-full h-full object-cover hover:scale-105 transition-transform duration-500' 
+            src="https://images.pexels.com/photos/26757586/pexels-photo-26757586.jpeg" 
+            alt="Post content" 
+            loading="lazy"
+          />
+        </div>
+
+        {/* Stats */}
+        <div className='flex justify-between items-center px-4 py-2 text-sm text-gray-600'>
+          <div className='flex gap-1 items-center'>
+            <ThumbUpIcon sx={{ color: "blue", fontSize: 16 }} />
+            <span>120 Likes</span>
+          </div>
+          <span>2 Comments</span>
+        </div>
+
+        {/* Actions */}
+        <div className='flex px-4 pb-3 gap-2'>
+          {[
+            { icon: <ThumbUpIcon sx={{ fontSize: 20, color: 'blue' }} />, label: "Like" },
+            { icon: <CommentIcon sx={{ fontSize: 20 }} />, label: "Comment", action: toggleComment },
+            { icon: <ShareIcon sx={{ fontSize: 20 }} />, label: "Share" }
+          ].map((btn, i) => (
+            <div 
+              key={i} 
+              onClick={btn.action} 
+              className='flex-1 flex justify-center items-center gap-2 py-2 rounded-xl 
+                        bg-white/30 backdrop-blur-md border border-white/20 text-gray-800 
+                        cursor-pointer hover:bg-white/40 hover:shadow-md transition-all duration-300'
+            >
+              {btn.icon}<span>{btn.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Comment Section */}
+        {comment && (
+          <div className='p-4 border-t border-white/20'>
+            {/* Input */}
+            <div className='flex gap-2 items-center mb-4'>
+              <img 
+                src="/collegefrontpage.jpg" 
+                alt="Profile" 
+                className='rounded-full w-10 h-10 border border-white shadow-sm' 
+                loading="lazy" 
+              />
+              <form onSubmit={handleSendComment} className='w-full flex gap-2'>
+                <input 
+                  type="text" 
+                  placeholder='Add a comment...' 
+                  className='w-full px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/30 
+                             focus:outline-none focus:ring-2 focus:ring-blue-400'
+                />
+                <button 
+                  type='submit' 
+                  className='px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300'
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+
+            {/* Dummy Comment */}
+            <div className='flex gap-3'>
+              <img 
+                src="/collegefrontpage.jpg" 
+                alt="User" 
+                className='rounded-full w-10 h-10 border border-white' 
+                loading="lazy" 
+              />
+              <div>
+                <div className='text-sm font-semibold text-gray-900'>Dummy User</div>
+                <div className='text-xs text-gray-500'>@amaxon Sde2</div>
+                <div className='mt-1 text-gray-700 bg-white/30 rounded-xl px-3 py-2 backdrop-blur-md'>
+                  hi it's beatifulll
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+      </Card>
+    </div>
+  )
+})
+
+Post.displayName = 'Post'
 export default Post
+

@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { memo, useCallback } from 'react'
 import Card from '../../components/card/card'
 import EditSharpIcon from '@mui/icons-material/EditSharp';
 import Post from '../../components/post/post';
+import PageWrapper from '../../components/PageWrapper';
 
-const Profile = () => {
+const Profile = memo(() => {
+    const handleEdit = useCallback(() => {
+        // Handle edit logic
+        console.log('Edit clicked')
+    }, [])
+
     return (
-        <div className=' px-5 xl:px-50 py-5 mt-5 flex flex-col gap-5 w-full pt-12 bg-gray-100'>
+        <PageWrapper className='px-5 xl:px-50 py-5 mt-5 flex flex-col gap-5 w-full pt-8 bg-gray-100'>
             <div className='flex justify-between '>
                 {/* left side main section */}
                 <div className='w-full md:w-[70%] '>
@@ -13,13 +19,35 @@ const Profile = () => {
                     <div>
                         <Card padding={0}>
                             <div className='w-full h-fit '>
-                                <div className='relative w-full h-[200px] '>
-                                    <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white '><EditSharpIcon /></div>
-                                    <img className='w-full h-[200px] rounded-tr-lg rounded-tl-lg ' src="https://images.pexels.com/photos/575375/pexels-photo-575375.jpeg" alt="" />
-                                    <div className='absolute object-cover top-24 left-6 z-10'> <img className='rounded-full border-2 border-white cursor-pointer w-35 h-35 ' src="https://images.pexels.com/photos/25724429/pexels-photo-25724429.jpeg" alt="" /></div>
+                                <div className='relative w-full h-[200px]'>
+                                    <button
+                                        onClick={handleEdit}
+                                        className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white hover:bg-gray-100 transition-colors'
+                                    >
+                                        <EditSharpIcon />
+                                    </button>
+                                    <img
+                                        className='w-full h-[200px] rounded-tr-lg rounded-tl-lg object-cover'
+                                        src="https://images.unsplash.com/photo-1689961645318-366c374f6b05?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                        alt="Cover"
+                                        loading="lazy"
+                                    />
+                                    <div className='absolute top-24 left-6 z-10'>
+                                        <img
+                                            className='rounded-full border-2 border-white cursor-pointer w-35 h-35 object-cover'
+                                            src="https://images.pexels.com/photos/25724429/pexels-photo-25724429.jpeg"
+                                            alt="Profile"
+                                            loading="lazy"
+                                        />
+                                    </div>
                                 </div>
-                                <div className=' mt-10 relative px-8 py-2'>
-                                    <div className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white '><EditSharpIcon /></div>
+                                <div className='mt-10 relative px-8 py-2'>
+                                    <button
+                                        onClick={handleEdit}
+                                        className='absolute cursor-pointer top-3 right-3 z-20 w-[35px] flex justify-center items-center h-[35px] rounded-full p-3 bg-white hover:bg-gray-100 transition-colors'
+                                    >
+                                        <EditSharpIcon />
+                                    </button>
 
                                     <div className='w-full'>
                                         <div className='text-2xl'>user 1</div>
@@ -28,29 +56,68 @@ const Profile = () => {
                                         <div className='text-md text-blue-800 '>2 connection</div>
 
                                         <div className='md:flex w-full justify-between '>
-                                            <div className='my-5 flex gap-5 '>
-                                                <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold '>open to</div>
-                                                <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold '>share</div>
+                                            <div className='my-5 flex gap-5'>
+                                                {/* Open To */}
+                                                <div className='my-5 flex gap-5'>
+                                                    {/* Open To (Green) */}
+                                                    <div className='cursor-pointer px-6 py-2 rounded-xl font-semibold
+                                                                  bg-green-500/20 backdrop-blur-md border border-green-300/50
+                                                                  text-green-700 shadow-sm hover:bg-green-500/30 
+                                                                  hover:shadow-lg hover:scale-105 transition-all duration-300'>
+                                                        Open to
+                                                    </div>
 
-                                                <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold '>Login</div>
+                                                    {/* Share (Blue) */}
+                                                    <div className='cursor-pointer px-6 py-2 rounded-xl font-semibold
+                                                             bg-blue-500/20 backdrop-blur-md border border-blue-300/50
+                                                             text-blue-700 shadow-sm hover:bg-blue-500/30 
+                                                             hover:shadow-lg hover:scale-105 transition-all duration-300'>
+                                                        Share
+                                                    </div>
 
-                                            </div >
-                                            <div className='my-5 flex gap-5 '>
-                                                <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold '>Message</div>
-                                                <div className='cursor-pointer p-2 border-1 rounded-lg bg-blue-800 text-white font-semibold '>Remove</div>
+                                                    {/* Login (Purple) */}
+                                                    <div className='cursor-pointer px-6 py-2 rounded-xl font-semibold
+                                                             bg-purple-500/20 backdrop-blur-md border border-purple-300/50
+                                                             text-purple-700 shadow-sm hover:bg-purple-500/30 
+                                                             hover:shadow-lg hover:scale-105 transition-all duration-300'>
+                                                        Login
+                                                    </div>
+                                                </div>
 
                                             </div>
+                                            <div className='my-5 flex gap-5'>
+                                                <div className='my-5 flex gap-5'>
+                                                    <div className='cursor-pointer px-6 py-2 rounded-xl font-semibold
+                                                             bg-purple-500/20 backdrop-blur-md border border-purple-300/50
+                                                             text-purple-700 shadow-sm hover:bg-purple-500/30 
+                                                             hover:shadow-lg hover:scale-105 transition-all duration-300'>
+                                                        Message
+                                                    </div>
+
+                                                <div className='cursor-pointer px-6 py-2 rounded-xl font-semibold 
+                  bg-white/20 backdrop-blur-md border border-white/30 
+                  text-gray-800 shadow-sm hover:bg-white/30 
+                  hover:shadow-lg hover:scale-105 transition-all duration-300'>
+                                                    Remove
+                                                </div>
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </Card>
 
-                        <div >
+                        <div>
                             <Card padding={1}>
                                 <div className="relative">
                                     {/* Floating Edit Button */}
-                                    <button className="absolute top-3 right-3 z-20 w-10 h-10 flex justify-center items-center rounded-full bg-amber-500 text-white shadow-lg hover:bg-amber-600 transition cursor-pointer">
+                                    <button
+                                        onClick={handleEdit}
+                                        className="absolute top-3 right-3 z-20 w-10 h-10 flex justify-center items-center rounded-full bg-amber-500 text-white shadow-md hover:bg-amber-600 transition-colors cursor-pointer"
+                                    >
                                         <EditSharpIcon fontSize="small" />
                                     </button>
 
@@ -120,8 +187,10 @@ const Profile = () => {
 
                 </div>
             </div>
-        </div>
+        </PageWrapper>
     )
-}
+})
+
+Profile.displayName = 'Profile'
 
 export default Profile

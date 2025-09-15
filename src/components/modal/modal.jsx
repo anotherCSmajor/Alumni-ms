@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { memo, useCallback } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 
-const Modal = (props) => {
-  return (
-    < div className='bg-black/50 fixed top-0 inset-0 left-0 z-20 flex justify-center items-center '>
-      <div className='w-[95%]  md:w-1/2 h-[500px] bg-white rounded-xl p-10'>
-        <div className='flex justify-between'> 
-            <div className='flex gap-4 items-center '>
-                <div className='text-2xl'>{props.title}</div>
+const Modal = memo(({ title, closeModal, children }) => {
+  const handleClose = useCallback(() => {
+    closeModal()
+  }, [closeModal])
 
-            </div>
-            <div onClick={()=>props.closeModal()} className='cursor-pointer'><CloseIcon /></div>
+  return (
+    <div className='bg-black/50 fixed inset-0 z-20 flex justify-center items-center'>
+      <div className='w-[95%] md:w-1/2 h-[500px] bg-white rounded-xl p-10 shadow-lg'>
+        <div className='flex justify-between'> 
+          <div className='flex gap-4 items-center'>
+            <div className='text-2xl'>{title}</div>
+          </div>
+          <button onClick={handleClose} className='cursor-pointer hover:bg-gray-100 rounded-full p-1'>
+            <CloseIcon />
+          </button>
         </div>
-         {props.children}
+        {children}
       </div>
-       
-       
-        
     </div>
   )
-}
+})
+
+Modal.displayName = 'Modal'
 
 export default Modal

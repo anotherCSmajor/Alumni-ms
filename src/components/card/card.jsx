@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-const Card = (props) => {
+const Card = memo(({ children, padding, className = '' }) => {
   return (
-    <div className={`'w-full h-full flex flex-col border-1 border-gray-300 rounded-md' ${props.padding?'p-5':'p-0'}`}>
-      {props.children}
+    <div className={`w-full h-full flex flex-col border border-gray-300 rounded-md ${padding ? 'p-5' : 'p-0'} ${className}`}>
+      {children}
     </div>
   )
-}
+})
+
+Card.displayName = 'Card'
 
 export default Card
