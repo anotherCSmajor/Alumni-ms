@@ -14,7 +14,7 @@
     "deploy:setup": "npm install gh-pages --save-dev",
     "start": "vite preview --port 3000"
   },
-  "homepage": "https://anotherCSmajor.github.io/Alumni-ms",
+  "homepage": "https://anotherCSmajor.github.io/Alumni-ms/",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
