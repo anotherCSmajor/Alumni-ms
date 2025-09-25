@@ -52,7 +52,7 @@ const Navbar2 = memo(() => {
                     <Link to={'/feed'} onClick={handleMobileClose}>
                         <img 
                             className="w-24 h-24 object-contain mx-auto" 
-                            src={'/aluminiverse.png'} 
+                            src={`${import.meta.env.BASE_URL}aluminiverse.svg`} 
                             alt="logo" 
                             loading="eager"
                         />
@@ -69,7 +69,7 @@ const Navbar2 = memo(() => {
                                 <div className="flex border-b gap-2 items-center cursor-pointer p-2 hover:bg-gray-50">
                                     <img 
                                         className="w-10 h-10 rounded-full object-cover" 
-                                        src="./aluminiverse.png" 
+                                        src={`${import.meta.env.BASE_URL}aluminiverse.svg`}
                                         alt="User" 
                                         loading="lazy"
                                     />
@@ -116,7 +116,7 @@ const Navbar2 = memo(() => {
                     {/* Profile pinned to bottom */}
                     <Link to={`/profile/idofuser`} className={`${linkClasses('/profile/idofuser')} mt-auto`} onClick={handleMobileClose}>
                         <img 
-                            src="/collegefrontpage.jpg" 
+                            src={`${import.meta.env.BASE_URL}collegefrontpage.jpg`}
                             alt="Profile" 
                             className="w-8 h-8 rounded-full object-cover" 
                             loading="lazy"

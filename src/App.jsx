@@ -27,7 +27,7 @@ function App() {
         {isLogin && <NavbarToggle />}
         <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="text-lg">Loading...</div></div>}>
           <Routes>
-            <Route path='/' element={<Landingpage/>}/>
+            <Route path='/Alumni-ms' element={<Landingpage/>}/>
             <Route path='/SignUp' element={<SignUp/>}/>
             <Route path='/Login' element={<Login/>}/>
             <Route path='/feed' element={<Feeds />}/>

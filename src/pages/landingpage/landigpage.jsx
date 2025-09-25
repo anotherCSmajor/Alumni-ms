@@ -46,7 +46,7 @@ const landigpage = () => {
                         <div className='relative'>
                             <div className='absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-3xl opacity-20 scale-110'></div>
                             <img 
-                                src="/collegefrontpage.jpg" 
+                                src={`${import.meta.env.BASE_URL}collegefrontpage.jpg`}
                                 alt="college image" 
                                 className='relative w-full max-w-lg h-auto rounded-3xl shadow-2xl object-cover hover:scale-105 transition-transform duration-300'
                             />

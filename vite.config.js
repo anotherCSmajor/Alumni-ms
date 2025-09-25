@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
-  base: "/Alumni-ms", // Change this to your GitHub repository name
+  base: "/Alumni-ms/", // Change this to your GitHub repository name
   plugins: [react(), tailwindcss()],
   build: {
     outDir: 'dist',
