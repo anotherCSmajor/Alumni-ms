@@ -5,6 +5,8 @@ import GroupIcon from '@mui/icons-material/PeopleAltOutlined';
 import WorkIcon from '@mui/icons-material/WorkOutline';
 import MessageIcon from '@mui/icons-material/ChatBubbleOutline';
 import NotificationsIcon from '@mui/icons-material/NotificationsNone';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { useLocation, Link } from "react-router-dom";
 import { useNavbar } from '../../contexts/NavbarContext';
 
@@ -44,7 +46,7 @@ const Navbar2 = memo(() => {
                 transition-transform duration-300 ease-in-out
                 ${isOpen ? 'w-64' : 'w-0 -translate-x-full'}
                 ${isMobile ? 'shadow-xl' : 'shadow-md'}
-                overflow-hidden
+                overflow-y-auto
             `}>
 
                 {/* Logo + Search */}
@@ -102,6 +104,15 @@ const Navbar2 = memo(() => {
                         <MessageIcon fontSize="small" />
                         <span>Messages</span>
                     </Link>
+                     <Link to={'/events'} className={linkClasses('/events')} onClick={handleMobileClose}>
+                        <InsertInvitationIcon fontSize="small" />
+                        <span>Events</span>
+                    </Link>
+                      <Link to={'/donate'} className={linkClasses('/donate')} onClick={handleMobileClose}>
+                        <CurrencyRupeeIcon fontSize="small" />
+                        <span>Donate</span>
+                    </Link>
+
 
                     <Link to={'/notifications'} className={linkClasses('/notifications')} onClick={handleMobileClose}>
                         <div className="relative flex items-center gap-3">
@@ -116,7 +127,7 @@ const Navbar2 = memo(() => {
                     {/* Profile pinned to bottom */}
                     <Link to={`/profile/idofuser`} className={`${linkClasses('/profile/idofuser')} mt-auto`} onClick={handleMobileClose}>
                         <img 
-                            src={`${import.meta.env.BASE_URL}collegefrontpage.jpg`}
+                            src={`https://images.pexels.com/photos/25724429/pexels-photo-25724429.jpeg`}
                             alt="Profile" 
                             className="w-8 h-8 rounded-full object-cover" 
                             loading="lazy"
